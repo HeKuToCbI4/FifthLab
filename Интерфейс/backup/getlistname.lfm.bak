@@ -1,0 +1,40 @@
+object NameGetter: TNameGetter
+  Left = 379
+  Height = 85
+  Top = 234
+  Width = 218
+  Caption = 'NameGetter'
+  ClientHeight = 85
+  ClientWidth = 218
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnShow = FormShow
+  LCLVersion = '1.4.0.4'
+  object ListNameEdit: TEdit
+    Left = 10
+    Height = 23
+    Top = 10
+    Width = 193
+    OnKeyDown = ListNameEditKeyDown
+    TabOrder = 0
+    Text = 'ListNameEdit'
+  end
+  object Ok: TButton
+    Left = 16
+    Height = 25
+    Top = 48
+    Width = 75
+    Caption = 'Ok'
+    OnClick = OkClick
+    TabOrder = 1
+  end
+  object Cancel: TButton
+    Left = 128
+    Height = 25
+    Top = 48
+    Width = 75
+    Caption = 'Cancel'
+    OnClick = CancelClick
+    TabOrder = 2
+  end
+end

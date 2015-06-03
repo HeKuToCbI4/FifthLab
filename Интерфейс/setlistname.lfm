@@ -1,0 +1,44 @@
+object SetListName: TSetListName
+  Left = 447
+  Height = 92
+  Top = 231
+  Width = 268
+  BorderIcons = []
+  BorderStyle = bsSingle
+  Caption = 'Enter List Name'
+  ClientHeight = 92
+  ClientWidth = 268
+  Color = clGradientActiveCaption
+  Font.CharSet = RUSSIAN_CHARSET
+  Font.Height = -16
+  Font.Name = 'Buxton Sketch'
+  Font.Pitch = fpVariable
+  Font.Quality = fqDraft
+  Font.Style = [fsBold]
+  LCLVersion = '1.4.0.4'
+  object Ok: TButton
+    Left = 16
+    Height = 25
+    Top = 56
+    Width = 104
+    Caption = 'Ok'
+    OnClick = OkClick
+    TabOrder = 0
+  end
+  object Cancel: TButton
+    Left = 152
+    Height = 25
+    Top = 56
+    Width = 104
+    Caption = 'Отмена'
+    OnClick = CancelClick
+    TabOrder = 1
+  end
+  object ListName: TEdit
+    Left = 24
+    Height = 28
+    Top = 16
+    Width = 224
+    TabOrder = 2
+  end
+end

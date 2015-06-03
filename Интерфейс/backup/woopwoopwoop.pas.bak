@@ -1,0 +1,38 @@
+unit WoopWoopWoop;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ExtCtrls;
+
+type
+
+  { TWoop_Woop }
+
+  TWoop_Woop = class(TForm)
+    Zoisberg: TImage;
+    procedure FormShow(Sender: TObject);
+  private{ private declarations }
+  public
+    { public declarations }
+  end;
+
+var
+  Woop_Woop: TWoop_Woop;
+
+implementation
+
+{$R *.lfm}
+
+{ TWoop_Woop }
+
+
+procedure TWoop_Woop.FormShow(Sender: TObject);
+begin
+  Zoisberg.Picture.LoadFromFile(GetCurrentDir+'Woop_Woop.jpg');
+end;
+
+end.
+

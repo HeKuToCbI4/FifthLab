@@ -1,0 +1,88 @@
+object Main_Menu: TMain_Menu
+  Left = 303
+  Height = 301
+  Top = 122
+  Width = 410
+  BorderIcons = [biSystemMenu, biMinimize]
+  BorderStyle = bsDialog
+  BorderWidth = 2
+  Caption = 'Main Menu'
+  ClientHeight = 301
+  ClientWidth = 410
+  Color = clSkyBlue
+  Font.CharSet = RUSSIAN_CHARSET
+  Font.Height = -19
+  Font.Name = 'Buxton Sketch'
+  Font.Pitch = fpVariable
+  Font.Quality = fqDraft
+  Font.Style = [fsBold]
+  OnActivate = FormActivate
+  OnClose = FormClose
+  OnShow = FormShow
+  ShowInTaskBar = stAlways
+  LCLVersion = '1.4.0.4'
+  object Open: TButton
+    Left = 256
+    Height = 48
+    Top = 16
+    Width = 144
+    Caption = 'Открыть'
+    OnClick = OpenClick
+    TabOrder = 0
+  end
+  object CreateList: TButton
+    Left = 256
+    Height = 48
+    Top = 72
+    Width = 144
+    Caption = 'Создать'
+    OnClick = CreateListClick
+    TabOrder = 1
+  end
+  object Delete: TButton
+    Left = 256
+    Height = 48
+    Top = 184
+    Width = 144
+    Caption = 'Удалить'
+    OnClick = DeleteClick
+    TabOrder = 2
+  end
+  object CloseMenu: TButton
+    Left = 256
+    Height = 48
+    Top = 240
+    Width = 144
+    Caption = 'Выйти'
+    OnClick = CloseMenuClick
+    TabOrder = 3
+  end
+  object Label1: TLabel
+    Left = 40
+    Height = 23
+    Top = 16
+    Width = 176
+    Caption = 'Существующие списки'
+    ParentColor = False
+  end
+  object CurrLists: TListBox
+    Left = 16
+    Height = 240
+    Top = 48
+    Width = 216
+    Color = clGradientInactiveCaption
+    ItemHeight = 0
+    OnDblClick = CurrListsDblClick
+    TabOrder = 4
+    TabStop = False
+  end
+  object Rename: TButton
+    Left = 256
+    Height = 48
+    Top = 128
+    Width = 144
+    Caption = 'Переименовать'
+    OnClick = RenameClick
+    TabOrder = 5
+  end
+end

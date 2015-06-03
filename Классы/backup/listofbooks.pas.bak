@@ -1,0 +1,243 @@
+unit ListOfBooks;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+	Classes, SysUtils, TList1, Book, DOM, XMLWrite, XMLRead, Dialogs, fileutil, LCLType, Controls;
+
+type
+	PBook = ^TBook;
+
+type
+
+	TBookList = class(TListOfObj)
+	private
+		ListName: string;
+		function Getter(index: integer): Pbook;
+		procedure Setter(index: integer; uk: Pbook);
+	public
+		//procedure ReturnList();
+		procedure ToFile(Name: string);
+		procedure FromFile(FileName: string);
+		procedure SortByName();
+		procedure SortByYear();
+		function IndexOf(point: pointer): longint;
+		procedure SortByPublisher();
+		property NameList: string read ListName write ListName;
+		property Item[index: integer]: PBook read Getter write Setter; default;
+		procedure Move(ind1, ind2: longint);
+	end;
+
+implementation
+
+procedure TBookList.Move(ind1, ind2: longint); //FIX
+var
+	i: integer;
+begin
+	if (ind1 >= 0) and (ind1 < total) and (ind2 >= 0) and (ind2 < total) then
+	begin
+		if ind1 < ind2 then
+			for i := ind1 to ind2 - 1 do
+				exchange(i, i + 1)
+		else
+			for i := ind1 - 1 downto ind2 do
+				exchange(i, i + 1);
+	end;
+end;
+
+procedure TBookList.ToFile(Name: string);
+var
+	i, j: longint;
+	xdoc: TXMLDocument;
+	Root, Parent, Node: TDOMNode;
+begin
+	xdoc := TXMLDocument.Create();//Создаем док.
+	Root := xdoc.CreateElement('List'); //Создаем нод.
+	xdoc.AppendChild(Root); //Добавляем его.
+	for i := 0 to self.Count - 1 do
+	begin
+		Root := xdoc.DocumentElement; //Создаём узел книги.
+		Parent := xdoc.CreateElement('Book'); //Создаём узел.
+		Root.AppendChild(Parent); //Добавляем.
+
+		Parent := xdoc.CreateElement('Name');
+		Node := xdoc.CreateTextNode(UTF8ToSys(self[i]^.Name));
+		Parent.AppendChild(Node);
+		Root.ChildNodes.Item[i].AppendChild(Parent);
+
+		Parent := xdoc.CreateElement('Year');
+		Node := xdoc.CreateTextNode(UTF8ToSys(IntToStr(self[i]^.Year)));
+		Parent.AppendChild(Node);
+		Root.ChildNodes.Item[i].AppendChild(Parent);
+
+		Parent := xdoc.CreateElement('Publisher');
+		Node := xdoc.CreateTextNode(UTF8ToSys(self[i]^.Publisher));
+		Parent.AppendChild(Node);
+		Root.ChildNodes.Item[i].AppendChild(Parent);
+
+		Parent := xdoc.CreateElement('Authors');
+		for j := 0 to self[i]^.AuthorsCount - 1 do
+		begin
+			Node := xdoc.CreateElement('Author');
+			Node.AppendChild(xdoc.CreateTextNode(UTF8ToSys(self[i]^.Author[j])));
+			Parent.AppendChild(Node);
+		end;
+		Root.ChildNodes.Item[i].AppendChild(Parent);
+	end;
+	writeXmlFile(xdoc, UTF8ToSys(Name + '.xml'));
+	xdoc.Free;
+end;
+
+procedure TBookList.FromFile(FileName: string);
+var
+	xdoc: TXMLDocument;
+	Child, Author: TDOMNode;
+	i, j: integer;
+	point: Pbook;
+	tmp: array of string;
+begin
+
+		ReadXMLFile(xdoc, UTF8ToSys(FileName + '.xml'));
+
+	Child := xdoc.DocumentElement.FirstChild;
+	self.ListName := FileName;
+	while Assigned(Child) do
+	begin
+		new(point);
+		point^ := TBook.Create();
+		//ShowMessage(Child.Nodename);
+		with Child.ChildNodes do
+		begin
+			point^.Name := SysToUtf8(Item[0].FirstChild.NodeValue);
+			point^.Year := StrToInt(SysToUtf8(Item[1].FirstChild.NodeValue));
+			point^.Publisher := SysToUtf8(Item[2].FirstChild.NodeValue);
+			Author := Item[3].FirstChild;
+			i := 0;
+			while assigned(Author) do
+			begin
+				Inc(i);
+				SetLength(tmp, i);
+				tmp[i - 1] := SysToUtf8(Author.Firstchild.Nodevalue);
+				Author := Author.NextSibling;
+			end;
+			for j := 0 to i - 1 do
+				point^.AuthorAdd(tmp[j]);
+			setLength(tmp, 0);
+		end;
+		Self.Append(point);
+		Child := Child.NextSibling;
+	end;
+	xdoc.Free;
+end;
+
+function TBookList.Getter(index: integer): PBook;
+var
+	uk: Pbook;
+begin
+	new(uk);
+	uk := self.ItemGet(index);
+	Result := uk;
+end;
+
+procedure TBookList.Setter(index: integer; uk: Pbook);
+var
+	point: pointer;
+begin
+
+	point := uk;
+	Self.Getter(index)^.Free;
+	self.ItemSet(index, point);
+end;
+
+function NameCmp(par1, par2: pointer): integer;
+var
+	pb1, pb2: PBook;
+begin
+	new(pb1);
+	new(pb2);
+	pb1 := par1;
+	pb2 := par2;
+	Result := -1;
+	if pb1^.Name = pb2^.Name then
+		Result := 0
+	else
+	if pb1^.Name > pb2^.Name then
+		Result := 1;
+end;
+
+function YearCmp(par1, par2: pointer): integer;
+var
+	pb1, pb2: PBook;
+begin
+	new(pb1);
+	new(pb2);
+	pb1 := par1;
+	pb2 := par2;
+	Result := -1;
+	if pb1^.Year = pb2^.Year then
+		Result := 0
+	else
+	if pb1^.Year > pb2^.Year then
+		Result := 1;
+end;
+
+function PublisherCmp(par1, par2: pointer): integer;
+var
+	pb1, pb2: PBook;
+begin
+	new(pb1);
+	new(pb2);
+	pb1 := par1;
+	pb2 := par2;
+	Result := -1;
+	if pb1^.Publisher = pb2^.Publisher then
+		Result := 0
+	else
+	if pb1^.Publisher > pb2^.Publisher then
+		Result := 1;
+end;
+
+procedure TBookList.SortByName();
+var
+	proc: func;
+begin
+	proc := @NameCmp;
+	self.Sort(proc);
+end;
+
+procedure TBookList.SortByPublisher();
+var
+	proc: func;
+begin
+	proc := @PublisherCmp;
+	self.Sort(proc);
+end;
+
+procedure TBookList.SortByYear();
+var
+	proc: func;
+begin
+	proc := @YearCmp;
+	self.Sort(proc);
+end;
+
+function TBookList.IndexOf(point: Pointer): longint;
+var
+	P: PBook;
+	i: longint;
+begin
+	new(p);
+	p := point;
+	for i := 0 to total - 1 do
+		if self[i]^.Code = p^.Code then
+		begin
+			Result := i;
+			break;
+		end
+		else
+			Result := -1;
+end;
+
+end.

@@ -1,0 +1,31 @@
+program TheFifthLab;
+
+{$mode objfpc}{$H+}
+
+uses {$IFDEF UNIX} {$IFDEF UseCThreads}
+	cthreads, {$ENDIF} {$ENDIF}
+	Interfaces, // this includes the LCL widgetset
+	Forms,
+	StartForm,
+	MainMenu,
+	ListEditor,
+	GetListNameForm,
+	BookEditForm,
+	Get_2_Indexes;
+
+{$R *.res}
+
+begin
+	Application.Title := 'Пятая Лаба';
+	//Test;
+	RequireDerivedFormResource := True;
+	Application.Initialize;
+	Application.CreateForm(TLoginForm, LoginForm);
+	Application.CreateForm(TMain_Menu, Main_Menu);
+	Application.CreateForm(TListEditor, CurrListEditor);
+	Application.CreateForm(TList_Name_Get, List_Name_Get);
+	Application.CreateForm(TBook_Editor, Book_Editor);
+	Application.CreateForm(T_2IndForm, _2IndForm);
+	Application.Run;
+
+end.

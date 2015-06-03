@@ -1,0 +1,388 @@
+{$mode objfpc}
+
+unit TList1;
+
+{========================================================================}
+interface
+
+uses SysUtils;
+
+type
+	ukaz = ^TObject;
+
+type
+	TNode = ^S;
+
+	S = record
+		Data: pointer;
+		Next: TNode;
+	end;
+type
+	func = function(node1, node2: pointer): integer;
+	Show = procedure(List: pointer);
+
+
+type
+	TList = class
+	protected
+		head: TNode;
+		cap, total: longint;
+		function ItemGet(index: longint): pointer; virtual;
+		procedure ItemSet(index: longint; point: pointer); virtual;
+		type ListException = class(Exception);
+	public
+		procedure ReturnList(cust: Show); virtual; //Works
+		procedure Clear; virtual; //Works
+		procedure Remove(Data: pointer); //Works
+		procedure Exchange(ind1, ind2: integer); //Works
+		procedure Move(ind1, ind2: integer); //Works
+		procedure Insert(index: integer; Data: pointer); //Works
+		function First(): pointer; virtual; //Works
+		function IndexOf(obj: pointer): longint; //Works
+		constructor Create(); //Works
+		destructor Destroy; override; //Works?
+		procedure Append(Data: pointer); //Works
+		procedure Delete(index: integer); virtual; //Works
+		procedure Sort(cust: func); //Works?
+		property Capacity: longint read cap; //Works
+		property Count: longint read total; //Works
+		property Items[index: longint]: pointer read ItemGet write ItemSet; default; //Works
+	end;
+
+type
+	TListOfObj = class(TList)
+	private
+		//procedure ItemSet(index: longint; point: pointer); override;
+	public
+		procedure Delete(index: integer); override;
+	end;
+
+implementation
+
+procedure TListOfObj.Delete(index: integer);
+var
+	nd: ukaz;
+begin
+	new(nd);
+	nd := self.Items[index];
+	nd^.Free;
+	inherited Delete(index);
+end;
+
+//–¥ ¤¥áâàãªâ®à
+destructor TList.Destroy;
+var
+	i: integer;
+begin
+	for i := 0 to cap - 1 do
+		self.Delete(0);
+	dispose(head);
+	inherited Destroy;
+end;
+
+//–¥ get
+function TList.ItemGet(index: integer): pointer;
+var
+	node: TNode;
+	i: longint;
+begin
+	if (index <= total) and (index >= 0) then
+	begin
+		new(node);
+		node := head;
+		if index = 0 then
+		begin
+			Result := node^.Data;
+			exit;
+		end;
+		for i := 0 to index - 1 do
+			node := node^.Next;
+		if node^.Data <> nil then
+			Result := node^.Data;
+	end
+	else
+		raise ListException.Create('Ëèñò íå ñîäåðæèò òàêîãî èíäåêñà');
+end;
+//–¥ set
+procedure TList.ItemSet(index: integer; point: pointer);
+var
+	node: TNode;
+	i: longint;
+begin
+	if (index <= total) and (index >= 0) then
+	begin
+		new(node);
+		node := head;
+		for i := 0 to index - 1 do
+			node := node^.Next;
+		node^.Data := point;
+	end
+	else
+		raise ListException.Create('Ëèñò íå ñîäåðæèò òàêîãî èíäåêñà');
+end;
+//–¥ ¯®ª § âì «¨áâ.
+procedure TList.ReturnList(cust: Show);
+var
+	i: integer;
+begin
+	for i := 0 to total - 1 do
+		cust(self.items[i]);
+end;
+//–¥ ®ç¨áâ¨âì “Š€‡€’…‹ˆ € … Žš…Š’›!!1111
+procedure TList.Clear;
+var
+	i: integer;
+begin
+	for i := 0 to total - 1 do
+		self.Delete(0);
+end;
+//–¥ ã¤ «¨âì ãª § â¥«ì ­  var
+procedure TList.Remove(Data: pointer);
+begin
+	if Data <> nil then
+		self.Delete(self.IndexOf(Data))
+	else
+		raise ListException.Create('ВРОТМНЕНОГИ.');
+end;
+//–¥ ®¡¬¥­ ¬¥áâ ¬¨ (® áãâ¨ á¢ ¯­ãâì ¤ âã ¨§ 1 ¢ ¤àã£®©);
+procedure TList.Exchange(ind1, ind2: integer);
+var
+	node: TNode;
+begin
+
+	begin
+		new(node);
+		node^.Data := Self.items[ind1];
+		Self.items[ind1] := Self.items[ind2];
+		Self.items[ind2] := node^.Data;
+	end;
+end;
+//–¥ ¯¥à¥¤¢¨­ãâì ­  ãª § ­­ãî ¯®§¨æ¨î.
+procedure TList.Move(ind1, ind2: integer);
+var
+	point: pointer;
+begin
+	if (ind1 >= 0) and (ind1 < total) and (ind2 >= 0) and (ind2 < total) then
+	begin
+		point := self[ind1];
+
+		self.Delete(ind1);
+		Insert(ind2, point);
+	end
+	else
+		raise ListException.Create('Èíäåêñû íóæíî ïîäáèðàòü òùàòåëüíåå.');
+end;
+//–¥ ¢áâ ¢ª  node á®¤¥à¦ é¥£® data
+procedure TList.Insert(index: integer; Data: pointer);
+var
+	node1, node2: TNode;
+	i: integer;
+begin
+	if (index < 0) or (index > total) then
+	begin
+		raise ListException.Create('Èíäåêñ ââåä¸í íåâåðíî.');
+		exit;
+	end;
+	if Data = nil then
+	begin
+		raise ListException.Create('Ïóñòóþ ññûëêó íåëüçÿ äîáàâèòü.');
+		exit;
+	end;
+	Inc(total);
+	Inc(cap);
+	if index = total then
+		self.append(Data);
+	new(node1);
+	new(node2);
+	if index = 0 then
+	begin
+		node1 := head;
+		node2^.Data := Data;
+		node2^.Next := Node1;
+		head := Node2;
+		exit;
+	end;
+	node1 := head;
+	i := 0;
+	while (i <> index - 1) do
+	begin
+		node1 := node1^.Next; //¢áâ ¢«ïîâ áî¤ë©.
+		Inc(i);
+	end;
+	new(node2);
+	node2^.Data := Data;
+	node2^.Next := node1^.Next;
+	node1^.Next := node2;
+
+end;
+//–¥ ¯¥à¢ë©
+function TList.First(): pointer;
+begin
+	if head <> nil then
+		Result := head^.Data
+	else
+		raise ListException.Create('Ñïèñîê ïóñò.');
+end;
+//–¥ ¨­¤¥ªá
+function TList.IndexOf(obj: pointer): longint;
+var
+	i: longint;
+	node: TNode;
+begin
+	if head <> nil then
+	begin
+		i := -1;
+		new(node);
+		node := head;
+		while node <> nil do
+		begin
+			Inc(i);
+			if node^.Data = obj then
+			begin
+				Result := i;
+				break;
+			end
+			else
+				node := node^.Next;
+		end;
+	end
+	else
+		Result := -1;
+
+end;
+//–¥ ª®­áàãªâ®à
+constructor TList.Create;
+begin
+	inherited Create;
+	head := nil;
+	total := 0;
+	cap := 1;
+end;
+//–¥ ¤®¡ ¢¨âì ¢ ª®­¥æ
+procedure TList.Append(Data: pointer);
+var
+	node, node2: TNode;
+begin
+	if Data = nil then
+	begin
+		raise ListException.Create('Íåëüçÿ äîáàâèòü ïóñòóþ ññûëêó.');
+		exit;
+	end;
+	if head = nil then
+	begin
+		new(head);
+		head^.Next := nil;
+		head^.Data := Data;
+		Inc(total);
+	end
+	else
+	begin
+		new(node);
+		node := head;
+		while (node^.Next <> nil) do
+			node := node^.Next;
+		begin
+			Inc(cap);
+			new(node^.Next);
+			new(node2);
+			node2 := node;
+			node := node^.Next;
+			node^.Data := Data;
+			node^.Next := nil;
+			node2^.Next := node;
+			Inc(total);
+		end;
+	end;
+end;
+//–¥ ã¤ «¨âì
+procedure TList.Delete(index: integer);
+var
+	node, node1: TNode;
+	i: integer;
+begin
+	if (index < 0) or (index > total - 1) then
+	begin
+		raise ListException.Create('Èíäåêñ ââåä¸í íåâåðíî.');
+		exit;
+	end;
+	if head^.Data = nil then
+	begin
+		raise ListException.Create('Ñïèñîê ïóñò. Óäàëÿòü íå÷åãî.');
+		exit;
+	end;
+	begin
+		if index = 0 then
+		begin
+			new(node);
+			if head^.Next <> nil then
+			begin
+				node := head;
+				head := head^.Next;
+				Dec(cap);
+				Dec(total);
+				dispose(node);
+			end
+			else //âãâ ï ã¤ «ïî ¨­äã ¨§ £®«®¢ë. That's all;
+			begin
+				Dec(total);
+				head := nil;
+			end;
+		end
+		else
+		if index = total - 1 then
+		begin
+			new(node);
+			node := head;
+			for i := 0 to index - 2 do
+				node := node^.Next;
+			dispose(node^.Next);
+			node^.Next := nil;
+			Dec(cap);
+			Dec(total);
+		end
+		else
+		begin
+			new(node1);
+			new(node);
+			node := head;
+			for i := 0 to index - 2 do
+				node := node^.Next;
+			node1 := node^.Next;
+			node^.Next := node1^.Next;
+			Dec(total);
+			dispose(node1);
+			Dec(cap);
+		end;
+	end;
+end;
+//–¥ á®àâ¨à®¢ª  á ¨á¯®«ì§®¢ ­¨¥¬ ª áâ®¬­®£® ¬¥â®¤ 
+procedure TList.Sort(cust: func);
+var
+	i, j: integer;
+	node1, node2: TNode;
+begin
+	if head = nil then
+		exit;
+	if (head^.Next = nil) then
+		exit;
+	new(node1);
+	new(node2);
+
+	for i := 0 to total - 1 do
+
+	begin
+		node1 := head;
+		node2 := head^.Next;
+		for j := 0 to total - 2 do
+
+		begin
+			if cust(node1^.Data, node2^.Data) = 1 then
+				self.Exchange(IndexOf(node1^.Data), indexof(node2^.Data)); //1>2
+			node1 := node2;
+			node2 := node2^.Next;
+		end;
+
+	end;
+end;
+
+end.

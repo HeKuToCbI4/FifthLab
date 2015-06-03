@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <PathDelim Value="\"/>
+    <Version Value="9"/>
+    <BuildModes Active="Default"/>
+    <Units Count="27">
+      <Unit0>
+        <Filename Value="TheFifthLab.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <TopLine Value="4"/>
+        <CursorPos X="51" Y="28"/>
+        <UsageCount Value="204"/>
+        <Loaded Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="Классы\Book.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Book"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="128"/>
+        <CursorPos X="35" Y="137"/>
+        <UsageCount Value="204"/>
+        <Loaded Value="True"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="Классы\TList1.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TList1"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="361"/>
+        <CursorPos X="37" Y="22"/>
+        <UsageCount Value="204"/>
+        <Loaded Value="True"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="Интерфейс\startform.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="LoginForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="StartForm"/>
+        <EditorIndex Value="9"/>
+        <TopLine Value="84"/>
+        <CursorPos X="23" Y="62"/>
+        <UsageCount Value="204"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="Классы\listofbooks.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ListOfBooks"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="91"/>
+        <CursorPos X="51" Y="26"/>
+        <UsageCount Value="201"/>
+        <Loaded Value="True"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="Интерфейс\mainmenu.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Main_Menu"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="MainMenu"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="148"/>
+        <CursorPos X="50" Y="29"/>
+        <UsageCount Value="147"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="Интерфейс\listeditor.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="ListEditor"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="ListEditor"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="421"/>
+        <CursorPos X="11" Y="442"/>
+        <UsageCount Value="141"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="Интерфейс\listnamegetter.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="ListNameGetter"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="101"/>
+        <CursorPos X="47" Y="103"/>
+        <UsageCount Value="139"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="Интерфейс\getlistnameform.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="List_Name_Get"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="GetListNameForm"/>
+        <EditorIndex Value="8"/>
+        <TopLine Value="68"/>
+        <CursorPos X="18" Y="39"/>
+        <UsageCount Value="117"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="Интерфейс\bookeditform.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Book_Editor"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="BookEditForm"/>
+        <EditorIndex Value="7"/>
+        <TopLine Value="94"/>
+        <CursorPos X="63" Y="116"/>
+        <UsageCount Value="106"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="Интерфейс\get_2_indexes.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="_2IndForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="Get_2_Indexes"/>
+        <EditorIndex Value="6"/>
+        <TopLine Value="32"/>
+        <CursorPos X="46" Y="54"/>
+        <UsageCount Value="38"/>
+        <Loaded Value="True"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="Features\zoidsberg.pas"/>
+        <ComponentName Value="Woop_Woop"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="21"/>
+        <CursorPos X="50" Y="44"/>
+        <UsageCount Value="33"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="Features\zoidsberg.lfm"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="32"/>
+        <DefaultSyntaxHighlighter Value="LFM"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="Классы\listofbooktest.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="22"/>
+        <CursorPos X="90" Y="48"/>
+        <UsageCount Value="195"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="Интерфейс\selectform.pas"/>
+        <ComponentName Value="SelectList"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="11"/>
+        <CursorPos X="25" Y="17"/>
+        <UsageCount Value="49"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="C:\lazarus\lcl\include\control.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="2713"/>
+        <CursorPos Y="2726"/>
+        <UsageCount Value="6"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="C:\lazarus\lcl\include\buttoncontrol.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="7"/>
+        <CursorPos Y="16"/>
+        <UsageCount Value="10"/>
+      </Unit16>
+      <Unit17>
+        <Filename Value="C:\lazarus\lcl\include\buttons.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="156"/>
+        <CursorPos Y="170"/>
+        <UsageCount Value="10"/>
+      </Unit17>
+      <Unit18>
+        <Filename Value="C:\lazarus\lcl\include\wincontrol.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="5329"/>
+        <CursorPos Y="5342"/>
+        <UsageCount Value="10"/>
+      </Unit18>
+      <Unit19>
+        <Filename Value="C:\lazarus\lcl\lclmessageglue.pas"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="106"/>
+        <CursorPos Y="123"/>
+        <UsageCount Value="10"/>
+      </Unit19>
+      <Unit20>
+        <Filename Value="C:\lazarus\lcl\interfaces\win32\win32callback.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="2596"/>
+        <CursorPos Y="2609"/>
+        <UsageCount Value="10"/>
+      </Unit20>
+      <Unit21>
+        <Filename Value="Интерфейс\getlistname.pas"/>
+        <ComponentName Value="NameGetter"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="23" Y="41"/>
+        <UsageCount Value="11"/>
+      </Unit21>
+      <Unit22>
+        <Filename Value="C:\lazarus\lcl\include\customform.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="950"/>
+        <CursorPos Y="964"/>
+        <UsageCount Value="6"/>
+      </Unit22>
+      <Unit23>
+        <Filename Value="Интерфейс\woopwoopwoop.pas"/>
+        <ComponentName Value="Woop_Woop"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="11"/>
+        <CursorPos X="49" Y="28"/>
+        <UsageCount Value="15"/>
+      </Unit23>
+      <Unit24>
+        <Filename Value="C:\lazarus\lcl\include\customlistbox.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="461"/>
+        <CursorPos Y="477"/>
+        <UsageCount Value="6"/>
+      </Unit24>
+      <Unit25>
+        <Filename Value="C:\lazarus\fpc\2.6.4\source\packages\fcl-xml\src\dom.pp"/>
+        <UnitName Value="DOM"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="315"/>
+        <CursorPos X="24" Y="329"/>
+        <UsageCount Value="10"/>
+      </Unit25>
+      <Unit26>
+        <Filename Value="get_2_indexes.pas"/>
+        <ComponentName Value="_2IndForm"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="26"/>
+        <CursorPos X="16" Y="47"/>
+        <UsageCount Value="19"/>
+      </Unit26>
+    </Units>
+    <JumpHistory Count="30" HistoryIndex="29">
+      <Position1>
+        <Filename Value="Интерфейс\listeditor.pas"/>
+        <Caret Line="184" Column="29" TopLine="175"/>
+      </Position1>
+      <Position2>
+        <Filename Value="Интерфейс\listeditor.pas"/>
+        <Caret Line="227" Column="17" TopLine="223"/>
+      </Position2>
+      <Position3>
+        <Filename Value="Интерфейс\listeditor.pas"/>
+        <Caret Line="235" Column="42" TopLine="222"/>
+      </Position3>
+      <Position4>
+        <Filename Value="Интерфейс\listeditor.pas"/>
+        <Caret Line="31" Column="9" TopLine="18"/>
+      </Position4>
+      <Position5>
+        <Filename Value="Интерфейс\listeditor.pas"/>
+        <Caret Line="47" Column="19" TopLine="25"/>
+      </Position5>
+      <Position6>
+        <Filename Value="Интерфейс\listeditor.pas"/>
+        <Caret Line="191" Column="11" TopLine="184"/>
+      </Position6>
+      <Position7>
+        <Filename Value="Интерфейс\listeditor.pas"/>
+        <Caret Line="192" Column="22" TopLine="184"/>
+      </Position7>
+      <Position8>
+        <Filename Value="Интерфейс\listeditor.pas"/>
+        <Caret Line="210" Column="23" TopLine="184"/>
+      </Position8>
+      <Position9>
+        <Filename Value="Интерфейс\listeditor.pas"/>
+        <Caret Line="264" Column="32" TopLine="237"/>
+      </Position9>
+      <Position10>
+        <Filename Value="Интерфейс\listeditor.pas"/>
+        <Caret Line="192" Column="5" TopLine="184"/>
+      </Position10>
+      <Position11>
+        <Filename Value="Интерфейс\listeditor.pas"/>
+        <Caret Line="191" Column="3" TopLine="182"/>
+      </Position11>
+      <Position12>
+        <Filename Value="Интерфейс\listeditor.pas"/>
+        <Caret Line="195" Column="17" TopLine="136"/>
+      </Position12>
+      <Position13>
+        <Filename Value="Интерфейс\listeditor.pas"/>
+        <Caret Line="186" Column="30" TopLine="335"/>
+      </Position13>
+      <Position14>
+        <Filename Value="Интерфейс\listeditor.pas"/>
+        <Caret Line="41" Column="23" TopLine="28"/>
+      </Position14>
+      <Position15>
+        <Filename Value="Интерфейс\listeditor.pas"/>
+        <Caret Line="94" Column="12" TopLine="70"/>
+      </Position15>
+      <Position16>
+        <Filename Value="Интерфейс\listeditor.pas"/>
+        <Caret Line="426" Column="80" TopLine="424"/>
+      </Position16>
+      <Position17>
+        <Filename Value="Интерфейс\listeditor.pas"/>
+        <Caret Line="364" Column="48" TopLine="324"/>
+      </Position17>
+      <Position18>
+        <Filename Value="Интерфейс\listeditor.pas"/>
+        <Caret Line="32" Column="9" TopLine="92"/>
+      </Position18>
+      <Position19>
+        <Filename Value="Интерфейс\listeditor.pas"/>
+        <Caret Line="48" Column="19" TopLine="35"/>
+      </Position19>
+      <Position20>
+        <Filename Value="Интерфейс\listeditor.pas"/>
+        <Caret Line="413" Column="42" TopLine="404"/>
+      </Position20>
+      <Position21>
+        <Filename Value="Классы\listofbooks.pas"/>
+        <Caret Line="113" Column="24" TopLine="100"/>
+      </Position21>
+      <Position22>
+        <Filename Value="Интерфейс\bookeditform.pas"/>
+        <Caret Line="96" Column="19" TopLine="83"/>
+      </Position22>
+      <Position23>
+        <Filename Value="Классы\listofbooks.pas"/>
+        <Caret Line="113" Column="43" TopLine="87"/>
+      </Position23>
+      <Position24>
+        <Filename Value="Классы\listofbooks.pas"/>
+        <Caret Line="108" Column="7" TopLine="95"/>
+      </Position24>
+      <Position25>
+        <Filename Value="Интерфейс\listeditor.pas"/>
+        <Caret Line="250" Column="53" TopLine="314"/>
+      </Position25>
+      <Position26>
+        <Filename Value="Интерфейс\listeditor.pas"/>
+        <Caret Line="259" Column="20" TopLine="245"/>
+      </Position26>
+      <Position27>
+        <Filename Value="Интерфейс\listeditor.pas"/>
+        <Caret Line="267" Column="26" TopLine="245"/>
+      </Position27>
+      <Position28>
+        <Filename Value="Интерфейс\listeditor.pas"/>
+        <Caret Line="280" Column="9" TopLine="257"/>
+      </Position28>
+      <Position29>
+        <Filename Value="Интерфейс\listeditor.pas"/>
+        <Caret Line="295" Column="29" TopLine="272"/>
+      </Position29>
+      <Position30>
+        <Filename Value="Интерфейс\listeditor.pas"/>
+        <Caret Line="436" Column="11" TopLine="416"/>
+      </Position30>
+    </JumpHistory>
+  </ProjectSession>
+  <Debugging>
+    <Watches Count="3">
+      <Item1>
+        <Expression Value="tmp[0]"/>
+      </Item1>
+      <Item2>
+        <Expression Value="tmp[1]"/>
+      </Item2>
+      <Item3>
+        <Expression Value="i"/>
+      </Item3>
+    </Watches>
+  </Debugging>
+</CONFIG>

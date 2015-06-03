@@ -1,0 +1,120 @@
+unit GetListName;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, StdCtrls;
+
+type
+
+  { TNameGetter }
+
+  TGetListName = class(TForm)
+    Ok: TButton;
+    Cancel: TButton;
+    ListNameEdit: TEdit;
+    procedure OkClick(Sender: TObject);
+    procedure CancelClick(Sender: TObject);
+    procedure ListNameEditKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
+    procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+  private
+    Files: TStringList;
+    procedure RefreshLists;{ private declarations }
+  public
+    NewName: String;
+    Okclicked: boolean;{ public declarations }
+  end;
+
+var
+  NameGetter: TGetListName;
+
+implementation
+
+{$R *.lfm}
+
+{ TNameGetter }
+
+procedure TGetListName.RefreshLists();
+var
+	i: integer;
+	path: string;
+	sr: TSearchRec;
+begin
+	path := GetCurrentDir + '\';
+    ShowMessage(path);
+	if FindFirst(Path + '*.xml', FaAnyFile, SR) = 0 then
+	begin
+		repeat
+			Files.Add(SR.Name);
+            ShowMessage(Sr.Name);//Fill the list
+		until FindNext(SR) <> 0;
+		FindClose(SR);
+	end;
+end;
+
+procedure TGetListName.FormCreate(Sender: TObject);
+begin
+
+end;
+
+procedure TGetListName.FormShow(Sender: TObject);
+begin
+    OkClicked:=False;
+	Files := TStringList.Create;
+    self.RefreshLists;
+end;
+
+procedure TGetListName.ListNameEditKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState
+  );
+begin
+    ShowMessage('Key ' + IntToStr(key) + ' was pressed');
+	if Key = 13 then
+	begin
+		OkClick(Sender);
+	end;
+end;
+
+procedure TGetListName.FormClose(Sender: TObject; var CloseAction: TCloseAction);
+begin
+     Files.Free;
+end;
+
+procedure TGetListName.OkClick(Sender: TObject);
+var
+	i: longint;
+	exists: boolean;
+begin
+    Files:=TStringList.Create();
+    RefreshLists;
+	if ListNameEdit.Text <> '' then
+	begin
+		exists := False;
+		for i := 0 to Files.Count - 1 do
+			if (Format('%s.xml', [ListNameEdit.Text]) = Files[i])and not(ListNameEdit.Text=NewName) then
+				exists := True;
+		if exists then
+		begin
+			if QuestionDlg('Ахтунг!', 'Файл с таким именем уже существует' + #13#10 + 'Заменить?',
+				mtConfirmation, [mbYes, 'Да', mbNo, 'Нет'], '') = mrYes then
+			begin
+				DeleteFile(Format('%s.xml', [ListNameEdit.Text]));
+				NewName := ListNameEdit.Text;
+				okclicked := True;
+				Close;
+			end;
+		end;
+	end;
+end;
+
+procedure TGetListName.CancelClick(Sender: TObject);
+begin
+      okclicked := False;
+	Close;
+end;
+
+end.
+

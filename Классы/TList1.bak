@@ -1,0 +1,303 @@
+{$mode objfpc}
+
+unit TList1;
+
+{========================================================================}
+interface
+
+uses SysUtils;
+
+Type
+	TNode = ^S;
+	S = Record
+		Data: pointer;
+		next: TNode;
+	end;
+{$F+}
+Type
+	proc=procedure(node1, node2: pointer);
+	Show=procedure(List: pointer);
+{$F-}
+Type
+	Tlist = class
+	private
+		head: TNode;
+		cap, total: longint;
+		function ItemGet(index: longint): pointer;
+		procedure ItemSet(index: longint; point: pointer);
+		
+	public
+		procedure ReturnList(cust: Show);
+		procedure Clear;
+		procedure Remove(Data: pointer);
+		procedure Exchange(ind1, ind2: integer);
+		procedure Move(ind1, ind2: integer);
+		procedure Insert(index: integer; Data: pointer);
+		function First(): pointer;
+		function IndexOf(obj: pointer): longint;
+		constructor Create();
+		destructor Destroy; override;
+		procedure Append(Data: pointer);
+		procedure Delete(index: integer);
+		procedure Sort(cust: proc);
+		property Capacity: longint read cap;
+		property Count: longint read total;
+		property Items[index: longint]: pointer read ItemGet write ItemSet; default;
+	end;
+	
+
+implementation
+	//Це деструктор
+	destructor TList.Destroy;
+	var
+                i: integer;
+	begin
+		for i:=0 to cap-2 do
+			self.Delete(0);
+		dispose(head);
+		inherited Destroy;
+	end;
+
+	//Це get
+	function TList.ItemGet(index: integer): pointer;
+	var
+		node: TNode;
+		i: longint;
+	begin
+		if index<=total then
+		begin
+			new(node);
+			node:=head;
+			if index=0 then
+			begin
+				result:=node^.Data;
+				exit;
+			end;
+			for i:=0 to index-1 do
+				node:=node^.Next;
+			if node^.Data<>nil then
+				result:=node^.Data
+		end
+		else
+			writeln();
+	end;
+	//Це set
+	procedure TList.ItemSet(index: integer; point: pointer);
+	var
+		node: TNode;
+		i: longint;
+	begin
+		if index<=total then
+		begin
+		new(node);
+		node:=head;
+		for i:=0 to index-1 do
+			node:=node^.Next;
+		node^.Data:=point;
+		end
+		else
+			exit;
+	end;
+	//Це показать лист.
+	procedure TList.ReturnList(cust: Show);
+	var
+		node: TNode;
+		i: integer;
+	begin
+		for i:=0 to total-1 do
+			cust(self[i]);
+	end;
+	//Це очистить УКАЗАТЕЛИ А НЕ ОБЪЕКТЫ!!1111
+	procedure TList.Clear;
+	var
+        i: integer;
+		node: TNode;
+	begin
+		for i:=0 to total-1 do
+			self.Delete(0);
+	end;
+	//Це удалить указатель на var
+	procedure TList.Remove(Data: pointer);
+	begin
+		self.Delete(self.IndexOf(Data));
+	end;
+	//Це обмен местами (По сути свапнуть дату из 1 в другой);
+	procedure TList.Exchange(ind1, ind2: integer);
+	var
+		node: TNode;
+	begin
+		new(node);
+		node^.Data:=Self.Items[ind1];
+		Self.Items[ind1]:=Self.Items[ind2];
+		Self.Items[ind2]:=node^.Data;
+	end;
+	//Це передвинуть на указанную позицию.
+	procedure TList.Move(ind1, ind2: integer);
+        var
+                node: TNode;
+	begin
+		new(node);
+		node:=self[ind1];
+		self.Delete(ind1);
+		self.Insert(ind2, node^.Data);
+	end;
+	//Це вставка node содержащего data
+	procedure TList.Insert(index: integer; Data: pointer);
+	var
+		node1, node2, node3: TNode;
+		i: integer;
+	begin
+		new(node1);
+		new(node2);
+		node1:=head;
+		i:=0;
+		while(i<>index) do
+		begin
+			node1:=node1^.Next; //вставляют сюдый.
+			inc(i);
+		end;
+		new(node2);
+		node2^.Data:=Data;
+		node2^.Next:=node1^.Next;
+		node1.Next:=node2;
+		inc(total);
+		inc(cap);
+	end;
+	//Це первый
+	function TList.First(): pointer;
+	begin
+		result:=head^.Data;
+	end;
+	//Це индекс
+	function TList.IndexOf(obj: pointer): longint;
+	var
+		i: integer;
+		node: TNode;
+	begin
+		result:=-1;
+		new(node);
+		node:=head;
+		for i:=0 to total do
+			if node^.Data = obj then
+			begin
+				result:=i;
+				break;
+			end
+			else	
+				node:=node^.Next;
+	end;
+	//Це консруктор
+	constructor TList.Create;
+	begin
+		inherited Create;
+		new(head);
+		head^.Next:=nil;
+		
+		head^.Data:=nil;
+		total:=0;
+		cap:=1;
+	end;
+	//Це добавить в конец
+	procedure TList.Append(Data: pointer);
+	var
+		node, node2: TNode;
+	begin
+		if data=nil then exit;
+		if head^.Data=nil then
+		begin
+			head^.Data:=Data;
+			inc(total);
+		end
+		else
+		begin
+			new(node);
+			node:= head;
+			while (node^.Next<>nil) do
+				node:= node^.Next;
+			begin
+				inc(cap);
+				new(node^.Next);
+				new(node2);
+				node2:=node;
+				node:=node^.Next;
+				node^.Data:=Data;
+				node^.Next:=nil;
+				node2^.Next:=node;
+				inc(total);
+			end;
+		end;
+	end;
+	//Це удалить
+	procedure TList.Delete(index: integer);
+	var
+		node, node1: TNode;
+		i: integer;
+	begin
+		if (index<0) or (index>total-1) or (self.first=nil) then
+			exit
+		else
+		begin
+		if index=0 then
+		begin
+			new(node);
+			if head^.Next<>nil then
+			begin
+				node:=head;
+				head:=head^.next;
+				dec(cap);
+				dec(total);
+				dispose(node);
+			end
+			else //тут я удаляю инфу из головы. That's all;
+			begin
+				dec(total);
+				head^.Data:=nil;
+			end;
+		end
+		else
+		if index=total-1 then
+		begin
+			new(node);
+			node:=head;
+			for i:=0 to index-2 do
+				node:=node^.next;
+			dispose(node^.Next);
+			node^.Next:=nil;
+			dec(cap);
+			dec(total);
+		end
+		else
+		begin
+			new(node1);
+			new(node);
+			node:=head;
+			for i:=0 to index-2 do
+				node:=node^.next;
+			node1:=node^.next;
+			node^.next:=node1^.next;
+			dec(total);
+			dispose(node1);
+			dec(cap);
+		end;
+		end;
+	end;
+	//Це сортировка с использованием кастомного метода
+	procedure TList.Sort(cust: proc);
+	var
+		i:integer;
+		node1, node2: TNode;
+	begin
+		if first=nil then
+			exit;
+		new(node1);
+		new(node2);
+		node1:=head;
+		node2:=head^.Next;
+		for i:=0 to total-2 do
+		begin
+			cust(node1^.Data, node2^.Data);
+			node1:=node2;
+			node2:=node2^.next;
+		end;
+	end;
+end.

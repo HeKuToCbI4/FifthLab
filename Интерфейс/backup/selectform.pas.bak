@@ -1,0 +1,50 @@
+unit SelectForm;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+	Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, Menus,
+	ActnList, StdCtrls;
+
+type
+
+	{ TSelectList }
+
+	TSelectList = class(TForm)
+		DoYou: TLabel;
+		OK: TButton;
+		Cancel: TButton;
+		procedure CancelClick(Sender: TObject);
+		procedure OKClick(Sender: TObject);
+	private
+		{ private declarations }
+	public
+		okclicked: boolean;{ public declarations }
+	end;
+
+var
+	SelectList: TSelectList;
+
+implementation
+
+{$R *.lfm}
+
+{ TSelectList }
+
+procedure TSelectList.OKClick(Sender: TObject);
+begin
+	okclicked := True;
+	Close;
+end;
+
+procedure TSelectList.CancelClick(Sender: TObject);
+begin
+	okclicked := False;
+	Close;
+	DoYou.Caption := 'Вы хотите';
+end;
+
+
+end.

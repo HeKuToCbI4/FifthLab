@@ -1,0 +1,78 @@
+{$mode objfpc}
+
+unit Book;
+
+interface
+uses SysUtils;
+Type
+	TBook = class
+	private
+		Nm: string;
+		Yr: integer;
+		Pub: string;
+		Aut: array of string;
+		function GetAut(index: integer): string;
+		procedure SetAut(index: integer; auth: string);
+	public
+		procedure DeleteAuthor(index: integer);
+		procedure AuthorAdd(auth: string);
+		property Name: string read Nm write Nm;
+		property Year: longint read Yr write Yr;
+		property Publisher: string read Pub write Pub;
+		Property Authors[index:integer]: string read GetAut write SetAut;
+		destructor destroy; override;
+	end;
+//В основной программе распарсить строки до нормального вида. Чтобы было 10/10.
+implementation
+
+destructor TBook.Destroy();
+var
+	i:integer;
+begin
+	for i:=0 to length(Aut)-1 do
+		self.Delete(0);
+	inherited Destroy;
+end;
+
+	Procedure TBook.DeleteAuthor(index:integer);
+var
+	i:integer;
+begin
+		for i:=index to length(Aut)-2 do
+			Aut[i]:=Aut[i+1];
+		SetLength(Aut, length(Aut)-1);
+end;
+
+	function TBook.GetAut(index: integer): string;
+	begin
+		result:=Aut[index];
+	end;
+	procedure TBook.SetAut(index: integer; auth: string);
+	begin
+	if auth<>'' then
+		Aut[index]:=auth
+	else
+		Raise Exception.Create('Когда это пустые строки научились писать книги?');
+	end;
+	procedure TBook.AuthorAdd(auth: string);
+	begin
+	if auth<>'' then
+        begin
+		SetLength(Aut, length(Aut)+1);
+		self.Aut[length(Aut)-1]:=auth;
+        end
+        else
+		Raise Exception.Create('Когда это пустые строки научились писать книги?');
+	end;
+
+	end.
+	//Я бы еще удаление запилил.
+
+	//Сериализацию объекта как делать будем...
+	{
+	А что если. Эм.
+	Добавить метод ToString и GetFromString...
+	ХМММ
+	Подумаю.
+
+	}

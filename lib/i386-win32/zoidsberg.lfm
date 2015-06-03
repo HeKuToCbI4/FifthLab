@@ -1,0 +1,18 @@
+object Woop_Woop: TWoop_Woop
+  Left = 243
+  Height = 420
+  Top = 145
+  Width = 548
+  BorderStyle = bsSingle
+  Caption = 'Woop_Woop'
+  ClientHeight = 420
+  ClientWidth = 548
+  OnCreate = FormCreate
+  LCLVersion = '1.4.0.4'
+  object Doctor: TImage
+    Left = 0
+    Height = 420
+    Top = 0
+    Width = 548
+  end
+end

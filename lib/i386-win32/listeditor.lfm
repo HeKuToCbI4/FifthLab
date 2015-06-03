@@ -1,0 +1,296 @@
+object ListEditor: TListEditor
+  Left = 300
+  Height = 304
+  Top = 112
+  Width = 692
+  BorderIcons = [biMaximize]
+  BorderWidth = 1
+  Caption = 'Редактор Списка'
+  ClientHeight = 304
+  ClientWidth = 692
+  Color = clGradientActiveCaption
+  Constraints.MinHeight = 304
+  Constraints.MinWidth = 692
+  Font.CharSet = RUSSIAN_CHARSET
+  Font.Height = -19
+  Font.Name = 'Buxton Sketch'
+  Font.Pitch = fpVariable
+  Font.Quality = fqDraft
+  Font.Style = [fsBold]
+  OnActivate = FormActivate
+  OnClose = FormClose
+  OnShow = FormShow
+  ShowInTaskBar = stAlways
+  LCLVersion = '1.4.0.4'
+  object Insert: TButton
+    Cursor = crHandPoint
+    Left = 562
+    Height = 40
+    Top = 10
+    Width = 120
+    Anchors = [akTop, akRight]
+    AutoSize = True
+    Caption = 'Вставить'
+    Constraints.MaxHeight = 40
+    Constraints.MaxWidth = 120
+    Constraints.MinHeight = 40
+    Constraints.MinWidth = 120
+    OnClick = InsertClick
+    TabOrder = 0
+  end
+  object Append: TButton
+    Cursor = crHandPoint
+    Left = 434
+    Height = 40
+    Top = 10
+    Width = 120
+    Align = alCustom
+    Anchors = [akTop, akRight]
+    AutoSize = True
+    Caption = 'Добавить'
+    Constraints.MaxHeight = 40
+    Constraints.MaxWidth = 120
+    Constraints.MinHeight = 40
+    Constraints.MinWidth = 120
+    OnClick = AppendClick
+    TabOrder = 1
+  end
+  object Remove: TButton
+    Cursor = crHandPoint
+    Left = 562
+    Height = 40
+    Top = 64
+    Width = 120
+    Anchors = [akTop, akRight]
+    AutoSize = True
+    Caption = 'Уд. Выбранный'
+    Constraints.MaxHeight = 40
+    Constraints.MaxWidth = 120
+    Constraints.MinHeight = 40
+    Constraints.MinWidth = 120
+    Font.CharSet = RUSSIAN_CHARSET
+    Font.Height = -16
+    Font.Name = 'Buxton Sketch'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    OnClick = RemoveClick
+    ParentFont = False
+    TabOrder = 2
+  end
+  object DeleteBook: TButton
+    Cursor = crHandPoint
+    Left = 434
+    Height = 40
+    Top = 64
+    Width = 120
+    Anchors = [akTop, akRight]
+    AutoSize = True
+    Caption = 'Удалить'
+    Constraints.MaxHeight = 40
+    Constraints.MaxWidth = 120
+    Constraints.MinHeight = 40
+    Constraints.MinWidth = 120
+    OnClick = DeleteBookClick
+    TabOrder = 3
+  end
+  object Clear: TButton
+    Cursor = crHandPoint
+    Left = 562
+    Height = 40
+    Top = 160
+    Width = 120
+    Anchors = [akTop, akRight]
+    AutoSize = True
+    Caption = 'Очистить'
+    Constraints.MaxHeight = 40
+    Constraints.MaxWidth = 120
+    Constraints.MinHeight = 40
+    Constraints.MinWidth = 120
+    OnClick = ClearClick
+    TabOrder = 4
+  end
+  object Move: TButton
+    Cursor = crHandPoint
+    Left = 562
+    Height = 40
+    Top = 112
+    Width = 120
+    Anchors = [akTop, akRight]
+    AutoSize = True
+    Caption = 'Переместить'
+    Constraints.MaxHeight = 40
+    Constraints.MaxWidth = 120
+    Constraints.MinHeight = 40
+    Constraints.MinWidth = 120
+    OnClick = MoveClick
+    TabOrder = 5
+  end
+  object Sort: TButton
+    Cursor = crHandPoint
+    Left = 434
+    Height = 40
+    Top = 160
+    Width = 120
+    Anchors = [akTop, akRight]
+    AutoSize = True
+    Caption = 'Сортировать'
+    Constraints.MaxHeight = 40
+    Constraints.MaxWidth = 120
+    Constraints.MinHeight = 40
+    Constraints.MinWidth = 120
+    OnClick = SortClick
+    TabOrder = 6
+  end
+  object Exchange: TButton
+    Cursor = crHandPoint
+    Left = 434
+    Height = 40
+    Top = 112
+    Width = 120
+    Anchors = [akTop, akRight]
+    AutoSize = True
+    Caption = 'Обменять'
+    Constraints.MaxHeight = 40
+    Constraints.MaxWidth = 120
+    Constraints.MinHeight = 40
+    Constraints.MinWidth = 120
+    OnClick = ExchangeClick
+    TabOrder = 7
+  end
+  object CurrBooks: TListBox
+    Left = 10
+    Height = 238
+    Top = 10
+    Width = 174
+    Anchors = [akTop, akLeft, akBottom]
+    Color = clGradientInactiveCaption
+    Font.CharSet = RUSSIAN_CHARSET
+    Font.Height = -16
+    Font.Name = 'Buxton Sketch'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    ItemHeight = 0
+    OnSelectionChange = CurrBooksSelectionChange
+    ParentFont = False
+    TabOrder = 8
+  end
+  object Cancel: TButton
+    Cursor = crHandPoint
+    Left = 562
+    Height = 40
+    Top = 256
+    Width = 120
+    Anchors = [akRight, akBottom]
+    AutoSize = True
+    Caption = 'Выйти'
+    Constraints.MaxHeight = 40
+    Constraints.MaxWidth = 120
+    Constraints.MinHeight = 40
+    Constraints.MinWidth = 120
+    OnClick = CancelClick
+    TabOrder = 9
+  end
+  object Save: TButton
+    Cursor = crHandPoint
+    Left = 434
+    Height = 40
+    Top = 208
+    Width = 120
+    Anchors = [akTop, akRight]
+    AutoSize = True
+    Caption = 'Сохранить'
+    Constraints.MaxHeight = 40
+    Constraints.MaxWidth = 120
+    Constraints.MinHeight = 40
+    Constraints.MinWidth = 120
+    OnClick = SaveClick
+    TabOrder = 10
+  end
+  object BookInfo: TMemo
+    Left = 192
+    Height = 239
+    Top = 10
+    Width = 233
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    Color = clGradientInactiveCaption
+    Font.CharSet = RUSSIAN_CHARSET
+    Font.Height = -16
+    Font.Name = 'Buxton Sketch'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Lines.Strings = (
+      'BookInfo'
+    )
+    ParentFont = False
+    ReadOnly = True
+    ScrollBars = ssAutoVertical
+    TabOrder = 11
+  end
+  object Edit: TButton
+    Cursor = crHandPoint
+    Left = 192
+    Height = 40
+    Top = 256
+    Width = 233
+    Align = alCustom
+    Anchors = [akLeft, akRight, akBottom]
+    AutoSize = True
+    Caption = 'Редактировать'
+    Constraints.MaxHeight = 40
+    Constraints.MinHeight = 40
+    Constraints.MinWidth = 214
+    OnClick = EditClick
+    TabOrder = 12
+  end
+  object Save_As: TButton
+    Cursor = crHandPoint
+    Left = 434
+    Height = 40
+    Top = 256
+    Width = 120
+    Anchors = [akRight, akBottom]
+    AutoSize = True
+    Caption = 'Сохр. Как'
+    Constraints.MaxHeight = 40
+    Constraints.MaxWidth = 120
+    Constraints.MinHeight = 40
+    Constraints.MinWidth = 120
+    OnClick = Save_AsClick
+    TabOrder = 13
+  end
+  object Rename: TButton
+    Cursor = crHandPoint
+    Left = 562
+    Height = 40
+    Top = 208
+    Width = 120
+    Anchors = [akTop, akRight]
+    AutoSize = True
+    Caption = 'Переименовать'
+    Constraints.MaxHeight = 40
+    Constraints.MaxWidth = 120
+    Constraints.MinHeight = 40
+    Constraints.MinWidth = 120
+    Font.CharSet = RUSSIAN_CHARSET
+    Font.Height = -16
+    Font.Name = 'Buxton Sketch'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    OnClick = RenameClick
+    ParentFont = False
+    TabOrder = 14
+  end
+  object Search: TButton
+    Left = 8
+    Height = 40
+    Top = 256
+    Width = 176
+    Anchors = [akLeft, akBottom]
+    Caption = 'Поиск'
+    OnClick = SearchClick
+    TabOrder = 15
+  end
+end

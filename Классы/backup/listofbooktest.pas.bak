@@ -1,0 +1,53 @@
+
+{$mode objfpc}
+unit listofbooktest;
+
+interface
+
+uses CRT, SysUtils, listofbooks, book, Dialogs;
+
+procedure test;
+
+implementation
+
+procedure test;
+var
+	i: integer;
+	a: TBookList;
+	b, c: TBook;
+	h: Pbook;
+begin
+	a := TBookList.Create;
+	b:=TBook.create;
+	b.Name:='Yoba';
+	b.Year:=1488;
+	b.Publisher:='Tvoya mama';
+	b.AuthorAdd('Solomid');
+	b.AuthorAdd('HuiJopa');
+	new(h);
+	h:=@b;
+	a.Append(h);
+	   for i:=0 to a.Capacity-1 do
+	ShowMessage(a[i]^.Name+'\n'+Inttostr(a[i]^.Year)+'\n'+a[i]^.Publisher);
+	   a.NameList:='Pidor';
+	   new(h);
+	   h^:=TBook.Create();
+	   h^.Name:='OMG';
+	h^.Year:=1337;
+	h^.Publisher:='PIDORAS';
+	h^.AuthorAdd('MAMASHA');
+	h^.AuthorAdd('PIZDA');
+	h^.AuthorAdd('SOOQA');
+	a.Append(h);
+	   //ShowMessage(a[0]^.Code);
+	   //a.Remove(h);
+	a.SortByPublisher();
+	a.ToFile(a.NameList);
+	//a.FromFile('Pidor.xml');
+	//for i := 0 to a.Capacity - 1 do
+	//	ShowMessage(a[i]^.Name + '\n' + IntToStr(a[i]^.Year) + '\n' + a[i]^.Publisher);
+	//ShowMessage(IntToStr(a.Count));
+	//ShowMessage(a.NameList);
+end;
+
+end.

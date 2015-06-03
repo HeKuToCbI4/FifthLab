@@ -1,0 +1,64 @@
+object LoginForm: TLoginForm
+  Left = 365
+  Height = 172
+  Top = 184
+  Width = 310
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  BorderWidth = 2
+  Caption = 'Авторизация'
+  ClientHeight = 172
+  ClientWidth = 310
+  Color = clSkyBlue
+  Font.CharSet = ANSI_CHARSET
+  Font.Height = -21
+  Font.Name = 'Buxton Sketch'
+  Font.Pitch = fpVariable
+  Font.Quality = fqDraft
+  Font.Style = [fsItalic]
+  OnClose = FormClose
+  OnCreate = FormCreate
+  LCLVersion = '1.4.0.4'
+  object Run: TButton
+    Cursor = crHandPoint
+    Left = 88
+    Height = 41
+    Top = 112
+    Width = 136
+    Caption = 'Начать'
+    Color = 15884898
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -27
+    Font.Name = 'Buxton Sketch'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    OnClick = RunClick
+    ParentFont = False
+    TabOrder = 0
+  end
+  object NameGetter: TEdit
+    Left = 24
+    Height = 31
+    Top = 64
+    Width = 256
+    Color = clHotLight
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -19
+    Font.Name = 'Candara'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    OnKeyDown = NameGetterKeyDown
+    ParentFont = False
+    TabOrder = 1
+  end
+  object Type_Name: TLabel
+    Left = 104
+    Height = 26
+    Top = 24
+    Width = 106
+    Caption = 'Введите имя'
+    ParentColor = False
+  end
+end

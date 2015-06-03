@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectOptions>
+    <Version Value="9"/>
+    <PathDelim Value="\"/>
+    <General>
+      <SessionStorage Value="InProjectDir"/>
+      <MainUnit Value="0"/>
+      <Title Value="Пятая Лаба"/>
+      <ResourceType Value="res"/>
+      <UseXPManifest Value="True"/>
+      <Icon Value="0"/>
+    </General>
+    <i18n>
+      <EnableI18N LFM="False"/>
+    </i18n>
+    <VersionInfo>
+      <StringTable ProductVersion=""/>
+    </VersionInfo>
+    <BuildModes Count="1">
+      <Item1 Name="Default" Default="True"/>
+    </BuildModes>
+    <PublishOptions>
+      <Version Value="2"/>
+    </PublishOptions>
+    <RunParams>
+      <local>
+        <FormatVersion Value="1"/>
+      </local>
+    </RunParams>
+    <RequiredPackages Count="1">
+      <Item1>
+        <PackageName Value="LCL"/>
+      </Item1>
+    </RequiredPackages>
+    <Units Count="11">
+      <Unit0>
+        <Filename Value="TheFifthLab.lpr"/>
+        <IsPartOfProject Value="True"/>
+      </Unit0>
+      <Unit1>
+        <Filename Value="Классы\Book.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Book"/>
+      </Unit1>
+      <Unit2>
+        <Filename Value="Классы\TList1.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="TList1"/>
+      </Unit2>
+      <Unit3>
+        <Filename Value="Интерфейс\startform.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="LoginForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="StartForm"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="Классы\listofbooks.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ListOfBooks"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="Интерфейс\mainmenu.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Main_Menu"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="MainMenu"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="Интерфейс\listeditor.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="ListEditor"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="ListEditor"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="Интерфейс\listnamegetter.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="ListNameGetter"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="Интерфейс\getlistnameform.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="List_Name_Get"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="GetListNameForm"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="Интерфейс\bookeditform.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Book_Editor"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="BookEditForm"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="Интерфейс\get_2_indexes.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="_2IndForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="Get_2_Indexes"/>
+      </Unit10>
+    </Units>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="11"/>
+    <PathDelim Value="\"/>
+    <Target>
+      <Filename Value="TheFifthLab"/>
+    </Target>
+    <SearchPaths>
+      <IncludeFiles Value="$(ProjOutDir)"/>
+      <OtherUnitFiles Value="Классы;Интерфейс"/>
+      <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+    </SearchPaths>
+    <CodeGeneration>
+      <SmartLinkUnit Value="True"/>
+    </CodeGeneration>
+    <Linking>
+      <Debugging>
+        <GenerateDebugInfo Value="False"/>
+      </Debugging>
+      <LinkSmart Value="True"/>
+      <Options>
+        <Win32>
+          <GraphicApplication Value="True"/>
+        </Win32>
+      </Options>
+    </Linking>
+    <Other>
+      <Verbosity>
+        <ShoLineNum Value="True"/>
+        <ShowHintsForUnusedUnitsInMainSrc Value="True"/>
+      </Verbosity>
+    </Other>
+  </CompilerOptions>
+  <Debugging>
+    <Exceptions Count="3">
+      <Item1>
+        <Name Value="EAbort"/>
+      </Item1>
+      <Item2>
+        <Name Value="ECodetoolError"/>
+      </Item2>
+      <Item3>
+        <Name Value="EFOpenError"/>
+      </Item3>
+    </Exceptions>
+  </Debugging>
+</CONFIG>
